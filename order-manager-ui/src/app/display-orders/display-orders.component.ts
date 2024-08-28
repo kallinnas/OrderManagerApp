@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-display-orders',
@@ -13,9 +14,11 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   templateUrl: './display-orders.component.html',
   styleUrl: './display-orders.component.css'
 })
-export class DisplayOrdersComponent implements OnInit {
+export class DisplayOrdersComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns = ['id', 'employeeName', 'customerName', 'shipperName', 'orderDate', 'orderTotalPrice', 'remove',];
 
@@ -24,11 +27,11 @@ export class DisplayOrdersComponent implements OnInit {
   datePipe = inject(DatePipe);
 
   ngOnInit(): void {
-    this.resetData();
+    // this.resetData();
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    this.resetData();
   }
 
   deleteOrder(id: any) {
@@ -50,6 +53,8 @@ export class DisplayOrdersComponent implements OnInit {
     this.service.$orders.subscribe(orders => {
       if (orders) {
         this.dataSource.data = orders;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       }
     });
   }
