@@ -1,8 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { GeneralModule } from '../modules/general.module';
 import { OrderService } from '../services/order.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-display-orders',
@@ -13,14 +15,20 @@ import { DatePipe } from '@angular/common';
 })
 export class DisplayOrdersComponent implements OnInit {
 
-  dataSource: any;
+  @ViewChild(MatSort) sort!: MatSort;
+  dataSource = new MatTableDataSource<any>([]);
   displayedColumns = ['id', 'employeeName', 'customerName', 'shipperName', 'orderDate', 'orderTotalPrice', 'remove',];
 
+  private _liveAnnouncer = inject(LiveAnnouncer);
   service = inject(OrderService);
   datePipe = inject(DatePipe);
 
   ngOnInit(): void {
     this.resetData();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   deleteOrder(id: any) {
@@ -32,10 +40,16 @@ export class DisplayOrdersComponent implements OnInit {
     });
   }
 
+  sortData(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else this._liveAnnouncer.announce('Sorting cleared');
+  }
+
   private resetData() {
     this.service.$orders.subscribe(orders => {
       if (orders) {
-        this.dataSource = new MatTableDataSource(orders);
+        this.dataSource.data = orders;
       }
     });
   }

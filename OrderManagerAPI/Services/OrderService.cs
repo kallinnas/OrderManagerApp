@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using OrderManagerAPI.Models.Dto;
+using OrderManagerAPI.Models;
 using OrderManagerAPI.Repositories;
 
 namespace OrderManagerAPI.Services
