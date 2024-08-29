@@ -1,13 +1,15 @@
+.header {
+    height: 94px;
+}
+
+.table_container {
+    height: calc(100% - 56px - 94px);
+    overflow: auto;
+}
+
 .footer {
     position: fixed;
     right: 0;
     bottom: 0;
     width: 100%;
-    background-color: transparent;
 }
-
-.table_container {
-    height: calc(100% - 56px);
-    overflow: auto;
-}
-    
