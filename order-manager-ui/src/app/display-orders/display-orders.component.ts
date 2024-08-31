@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class DisplayOrdersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   // AUTOCOMPLETE
-  filterControl = new FormControl('');
+  filterControl = new FormControl('', [Validators.pattern(/^[a-zA-Z0-9 ]*$/)]);
   filteredOrders$!: Observable<any[]>;
 
   dataSource = new MatTableDataSource<any>([]);
@@ -75,7 +75,4 @@ export class DisplayOrdersComponent implements OnInit, AfterViewInit {
     });
   }
 
-  clearFilter() {
-    this.filterControl.setValue('');
-  }
 }

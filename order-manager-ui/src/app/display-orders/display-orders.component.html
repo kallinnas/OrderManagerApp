@@ -2,16 +2,21 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Filter orders</mat-label>
-        <input matInput [formControl]="filterControl" placeholder="Type..." [matAutocomplete]="auto" #inputField
+        <input matInput [formControl]="filterControl" placeholder="Type..." [matAutocomplete]="auto"
             #autoTrigger="matAutocompleteTrigger">
-        <button *ngIf="filterControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+        <button *ngIf="filterControl.value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="filterControl.setValue('')">
             <mat-icon>close</mat-icon>
         </button>
         <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOrders$ | async"
-                [value]="filterService.getPropertyValue(option, filterControl)">
-                {{ filterService.getPropertyValue(option, filterControl)}}
-            </mat-option>
+            <ng-container *ngIf="filterControl.value">
+                <ng-container *ngFor="let option of filteredOrders$ | async">
+                    <mat-option *ngIf="filterService.getPropertyValue(option, filterControl)"
+                        [value]="filterService.getPropertyValue(option, filterControl)">
+                        {{ filterService.getPropertyValue(option, filterControl) }}
+                    </mat-option>
+                </ng-container>
+            </ng-container>
         </mat-autocomplete>
     </mat-form-field>
 </div>
