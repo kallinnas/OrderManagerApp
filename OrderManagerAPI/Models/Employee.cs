@@ -16,4 +16,9 @@ namespace OrderManagerAPI.Models
         public virtual ICollection<Order> Orders { get; set; }
     }
 
+    public class EmployeeDtoGetDdl
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+    }
 }

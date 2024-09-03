@@ -12,4 +12,10 @@ namespace OrderManagerAPI.Models
         public string Phone { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
+
+    public class ShipperDtoGetDdl
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

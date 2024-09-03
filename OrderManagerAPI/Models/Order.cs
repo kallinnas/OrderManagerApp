@@ -18,6 +18,16 @@ public class Order
     public virtual ICollection<OrderDetails> OrderDetails { get; set; }
 }
 
+public class OrderDtoAdd
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public int EmployeeId { get; set; }
+    public int ShipperId { get; set; }
+    public DateTime OrderDate { get; set; }
+    public virtual ICollection<OrderDetailsDtoAddOrder> OrderDetails { get; set; }
+}
+
 public class OrderDtoGetAll
 {
     public int Id { get; set; }

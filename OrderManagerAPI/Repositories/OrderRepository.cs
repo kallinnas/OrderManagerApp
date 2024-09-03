@@ -32,5 +32,12 @@ namespace OrderManagerAPI.Repositories
             return result > 0;
         }
 
+        public async Task<Order> AddAsync(Order order)
+        {
+            var createdOrder = await context.Orders.AddAsync(order);
+            await context.SaveChangesAsync();
+            return createdOrder.Entity;
+        }
+
     }
 }
