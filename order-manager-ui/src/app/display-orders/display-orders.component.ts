@@ -1,15 +1,15 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormControl, Validators } from '@angular/forms';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { FormControl, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
 import { GeneralModule } from '../modules/general.module';
 import { OrderService } from '../services/order.service';
 import { FilterService } from '../services/filter.service';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-display-orders',
@@ -33,7 +33,7 @@ export class DisplayOrdersComponent implements OnInit, AfterViewInit {
     private _liveAnnouncer: LiveAnnouncer,
     public filterService: FilterService,
     private orderService: OrderService,
-    public datePipe: DatePipe
+    public utilsService: UtilsService
   ) { }
 
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class DisplayOrdersComponent implements OnInit, AfterViewInit {
     this.orderService.$orders.subscribe(orders => {
       if (orders) {
         this.dataSource.data = orders.map(order => ({ // TODO: remapping orderDate must be passed asorderDateConv from server
-          ...order, orderDate: this.datePipe.transform(order.orderDate, 'dd-MM-yyyy' || '')
+          ...order, orderDate: this.utilsService.convertDate(order.orderDate)
         }));
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;

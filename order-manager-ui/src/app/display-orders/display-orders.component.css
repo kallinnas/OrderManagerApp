@@ -7,9 +7,9 @@
     overflow: auto;
 }
 
-.footer {
+/* .footer { was used for paginator
     position: fixed;
     right: 0;
     bottom: 0;
     width: 100%;
-}
+} */

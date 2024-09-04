@@ -1,8 +1,21 @@
-<header fxLayoutAlign="center">
-    <a mat-raised-button routerLink="/display-orders">Display</a>
-    <a mat-raised-button routerLink="/add-order">Add</a>
-</header>
+<div fxFlexFill fxLayout="column" fxLayoutGap="16px">
 
-<main>
-    <router-outlet></router-outlet>
-</main>
+    <div fxLayoutAlign="center" fxFlexOffset="16px" fxLayoutGap="16px">
+        <a mat-raised-button routerLink="/display-orders">Display</a>
+        <a mat-raised-button routerLink="/add-order">Add</a>
+    </div>
+
+    <div fxFlex fxLayout="column">
+        <div fxFlex style="margin: 1%;">
+            <router-outlet></router-outlet>
+        </div>
+
+        <footer fxLayout="column">
+            <div fxLayout="row">
+                <hr fxFlex="90">
+            </div>
+            <p fxFlexAlign="center">Copyright © 2024 Order Manager API</p>
+        </footer>
+    </div>
+
+</div>
