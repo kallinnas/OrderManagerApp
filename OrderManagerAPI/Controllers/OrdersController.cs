@@ -40,13 +40,12 @@ namespace OrderManagerAPI.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Order>> Add(OrderDtoAdd order)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Order>> GetById(int id)
         {
             try
             {
-                var createdOrder = await service.AddAsync(order);
-                return CreatedAtAction(nameof(GetAll), new { id = createdOrder.Id }, createdOrder);
+                return Ok(await service.GetByIdAsync(id));
             }
 
             catch (Exception ex)
@@ -54,5 +53,22 @@ namespace OrderManagerAPI.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Order>> Add(OrderDtoAdd order)
+        {
+            try
+            {
+                var createdOrder = await service.AddAsync(order);
+                return CreatedAtAction(nameof(GetById), new { id = createdOrder.Id }, createdOrder);
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        
     }
 }

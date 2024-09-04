@@ -50,6 +50,9 @@ namespace OrderManagerAPI.Data
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price).HasColumnType("decimal(18,2)");
+
+            // avoids population of Order in OrderDetails on AddOrder
+            modelBuilder.Entity<OrderDetails>().Ignore(od => od.Order);
         }
     }
 }

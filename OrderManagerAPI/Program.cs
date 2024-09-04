@@ -2,14 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using OrderManagerAPI.Data;
 using OrderManagerAPI.Repositories;
 using OrderManagerAPI.Services;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddControllers().AddJsonOptions(options =>
-    // configure the JSON serializer to handle circular references by preserving references during serialization
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -36,6 +36,18 @@ namespace OrderManagerAPI.Services
             throw new Exception($"Order id{id} for deletion was not found.");
         }
 
+        public async Task<Order> GetByIdAsync(int id)
+        {
+            var order = await orderRepository.GetByIdAsync(id);
+
+            if (order != null)
+            {
+                return order;
+            }
+
+            throw new Exception($"Order id{id} was not found.");
+        }
+
         public async Task<Order> AddAsync(OrderDtoAdd orderDto)
         {
             // MapperProfile has Map for orderDetails inside of order so added order gets into db with its details in one interaction
