@@ -18,22 +18,24 @@ public class Order
     public virtual ICollection<OrderDetails> OrderDetails { get; set; }
 }
 
-public class OrderDtoAdd
+public class OrderDto
 {
     public int Id { get; set; }
+    public DateTime OrderDate { get; set; }
+}
+
+public class OrderDtoAdd : OrderDto
+{
     public int CustomerId { get; set; }
     public int EmployeeId { get; set; }
     public int ShipperId { get; set; }
-    public DateTime OrderDate { get; set; }
     public virtual ICollection<OrderDetailsDtoAddOrder> OrderDetails { get; set; }
 }
 
-public class OrderDtoGetAll
+public class OrderDtoGetAll : OrderDto
 {
-    public int Id { get; set; }
     public string EmployeeName { get; set; }
     public string CustomerName { get; set; }
     public string ShipperName { get; set; }
-    public DateTime OrderDate { get; set; }
     public decimal OrderTotalPrice { get; set; }
 }

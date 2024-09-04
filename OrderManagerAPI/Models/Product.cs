@@ -21,9 +21,6 @@ namespace OrderManagerAPI.Models
         public Product(int id, string name, decimal price) { Id = id; Name = name; Price = price; }
     }
 
-    public class ProductDtoAddOrder : ProductDto { }
-    public class ProductDtoGetDdl : ProductDto { }
-
     public class ProductDto
     {
         public int Id { get; set; }

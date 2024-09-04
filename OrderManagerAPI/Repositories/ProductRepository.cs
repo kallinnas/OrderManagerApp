@@ -10,9 +10,9 @@ namespace OrderManagerAPI.Repositories
 
         public ProductRepository(AppDbContext context) { this.context = context; }
 
-        public async Task<ICollection<ProductDtoGetDdl>> GetProductsDdlAsync()
+        public async Task<ICollection<ProductDto>> GetProductsDdlAsync()
         {
-            return await context.Products.Select(p => new ProductDtoGetDdl { Id = p.Id, Name = p.Name, Price = p.Price }).ToListAsync();
+            return await context.Products.Select(p => new ProductDto { Id = p.Id, Name = p.Name, Price = p.Price }).ToListAsync();
         }
     }
 }

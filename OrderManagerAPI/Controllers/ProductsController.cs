@@ -13,7 +13,7 @@ namespace OrderManagerAPI.Controllers
         public ProductsController(ProductRepository productRepository) { this.productRepository = productRepository; }
 
         [HttpGet("Ddl")]
-        public async Task<ActionResult<ICollection<ProductDtoGetDdl>>> GetProductsDdl()
+        public async Task<ActionResult<ICollection<ProductDto>>> GetProductsDdl()
         {
             try
             {

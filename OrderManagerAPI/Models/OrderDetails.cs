@@ -25,7 +25,7 @@ namespace OrderManagerAPI.Models
     public class OrderDetailsDtoAddOrder
     {
         public int OrderId { get; set; }
-        public ProductDtoAddOrder Product { get; set; } = new ProductDtoAddOrder();
+        public int ProductId { get; set; }
         public int Quantity { get; set; }
     }
 }
