@@ -1,21 +1,22 @@
-<div fxFlexFill fxLayout="column" fxLayoutGap="16px">
+<div fxFlexFill fxLayout="column">
 
-    <div fxLayoutAlign="center" fxFlexOffset="16px" fxLayoutGap="16px">
+    <div fxFlex="80px" fxLayoutAlign="space-evenly center" style="background-color: cornflowerblue;">
         <a mat-raised-button routerLink="/display-orders">Display</a>
         <a mat-raised-button routerLink="/add-order">Add</a>
+        <a mat-raised-button routerLink="/edit-order">Edit</a>
     </div>
 
-    <div fxFlex fxLayout="column">
+    <div fxFlex="100%" fxLayout="column" style="overflow: auto; background-color: rgb(230, 245, 237);">
         <div fxFlex style="margin: 1%;">
             <router-outlet></router-outlet>
         </div>
-
-        <footer fxLayout="column">
-            <div fxLayout="row">
-                <hr fxFlex="90">
-            </div>
-            <p fxFlexAlign="center">Copyright © 2024 Order Manager API</p>
-        </footer>
     </div>
+
+    <footer fxLayout="column" style="background-color: cornflowerblue;">
+        <div fxLayout="row">
+            <hr fxFlex="90">
+        </div>
+        <p fxFlexAlign="center">Copyright © 2024 Order Manager API</p>
+    </footer>
 
 </div>

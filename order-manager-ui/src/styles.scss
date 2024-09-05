@@ -1,0 +1,21 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-form-field,
+mat-paginator,
+.mat-mdc-header-cell,
+.mat-mdc-row {
+    background-color: rgb(230, 245, 237) !important;
+}
+
+.mat-mdc-row:hover {
+    background-color: #87ceeb !important;
+}
+

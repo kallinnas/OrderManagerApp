@@ -1,12 +1,15 @@
-export interface Order{
+import { OrderDetails } from "./order-details.model";
+
+export interface Order {
     id: number;
     customerId: number;
     employeeId: number;
     shipperId: number;
     orderDate: Date;
+    orderDetails: OrderDetails[];
 }
 
-export interface OrderDtoGetAll{
+export interface OrderDtoGetAll {
     id: number;
     employeeName: string;
     employeeId: string;

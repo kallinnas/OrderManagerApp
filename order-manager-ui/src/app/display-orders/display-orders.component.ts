@@ -16,7 +16,7 @@ import { UtilsService } from '../services/utils.service';
   standalone: true,
   imports: [GeneralModule],
   templateUrl: './display-orders.component.html',
-  styleUrl: './display-orders.component.css'
+  styleUrl: './display-orders.component.scss'
 })
 export class DisplayOrdersComponent implements OnInit, AfterViewInit {
 

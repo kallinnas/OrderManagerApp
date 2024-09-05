@@ -7,7 +7,7 @@ import { GeneralModule } from './modules/general.module';
   standalone: true,
   imports: [RouterOutlet, RouterLink, GeneralModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'order-manager-ui';

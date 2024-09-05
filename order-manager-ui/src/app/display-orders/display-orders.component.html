@@ -1,4 +1,4 @@
-<div class="header" fxLayout="row" fxLayoutAlign="center center">
+<div fxLayout="row" fxLayoutAlign="center center">
 
     <mat-form-field appearance="outline">
         <mat-label>Filter orders</mat-label>
@@ -66,6 +66,4 @@
     </table>
 </div>
 
-<div>
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10]"> </mat-paginator>
-</div>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,15]"> </mat-paginator>

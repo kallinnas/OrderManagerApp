@@ -1,0 +1,13 @@
+/* AC + paginator height = 132px */
+.table_container {
+    height: calc(100% - 76px - 56px);
+    overflow: auto;
+}
+
+/* In mobile mode sets paginator in one line */
+@media (max-width: 600px) {
+    ::ng-deep .mat-mdc-paginator-page-size,
+    ::ng-deep .mat-mdc-paginator-range-actions {
+        flex: 1;
+    }
+}

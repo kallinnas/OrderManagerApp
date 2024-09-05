@@ -7,3 +7,8 @@ export interface Customer{
     country: string;
     postcode: number;
 }
+
+export interface CustomerDtoGetDdl{
+    id: number;
+    name: string;
+}
