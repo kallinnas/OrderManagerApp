@@ -10,19 +10,26 @@ namespace OrderManagerAPI.Repositories
 
         public OrderRepository(AppDbContext context) { this.context = context; }
 
-        public async Task<ICollection<Order>> GetAllAsync()
+        public async Task<ICollection<OrderDtoGetAll>> GetAllAsync()
         {
             return await context.Orders
                 .Include(o => o.Customer)
                 .Include(o => o.Employee)
                 .Include(o => o.Shipper)
-                .Include(o => o.OrderDetails).ThenInclude(od => od.Product).ToListAsync();
+                .Include(o => o.OrderDetails)
+                .ThenInclude(od => od.Product)
+                .Select(o => new OrderDtoGetAll
+                {
+                    Id = o.Id,
+                    OrderDate = o.OrderDate,
+                    EmployeeName = $"{o.Employee.FirstName} {o.Employee.LastName}",
+                    CustomerName = o.Customer.Name,
+                    ShipperName = o.Shipper.Name,
+                    OrderTotalPrice = o.OrderDetails.Sum(od => od.Product.Price * od.Quantity)
+                }).ToListAsync();
         }
 
-        public async Task<Order?> GetByIdAsync(int id)
-        {
-            return await context.Orders.Include(o => o.OrderDetails).FirstOrDefaultAsync(o => o.Id == id);
-        }
+        public async Task<Order?> GetByIdAsync(int id) { return await context.Orders.Include(o => o.OrderDetails).FirstOrDefaultAsync(o => o.Id == id); }
 
         public async Task<bool> DeleteAsync(Order order)
         {

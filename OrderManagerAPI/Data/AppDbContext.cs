@@ -30,7 +30,7 @@ namespace OrderManagerAPI.Data
 
             modelBuilder.Entity<Shipper>()
                 .HasMany(s => s.Orders)
-                .WithOne(o => o.Shipper).HasForeignKey(s => s.ShipperId);
+                .WithOne(o => o.Shipper).HasForeignKey(o => o.ShipperId);
 
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.OrderDetails)

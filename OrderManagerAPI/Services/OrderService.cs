@@ -19,10 +19,7 @@ namespace OrderManagerAPI.Services
             this.mapper = mapper;
         }
 
-        public async Task<ICollection<OrderDtoGetAll>> GetAllAsync()
-        {
-            return mapper.Map<ICollection<OrderDtoGetAll>>(await orderRepository.GetAllAsync());
-        }
+        public async Task<ICollection<OrderDtoGetAll>> GetAllAsync() { return await orderRepository.GetAllAsync(); }
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -50,8 +47,8 @@ namespace OrderManagerAPI.Services
 
         public async Task<Order> AddAsync(OrderDtoAdd orderDto)
         {
-            // MapperProfile has Map for orderDetails inside of order so added order gets into db with its details in one interaction
             var order = mapper.Map<Order>(orderDto);
+            // order inserted with orderDetails into db in one interaction
             return await orderRepository.AddAsync(order);
         }
 
