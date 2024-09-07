@@ -22,10 +22,19 @@ namespace OrderManagerAPI.Models
         }
     }
 
-    public class OrderDetailsDtoAddOrder
+    public class OrderDetailsDto
     {
-        public int OrderId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
+    }
+
+    public class OrderDetailsDtoAddOrder : OrderDetailsDto
+    {
+        public int OrderId { get; set; }
+    }
+
+    public class OrderDetailsDtoGetById : OrderDetailsDto
+    {
+        public int Id { get; set; }
     }
 }

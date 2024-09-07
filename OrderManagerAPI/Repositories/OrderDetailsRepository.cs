@@ -1,4 +1,5 @@
-﻿using OrderManagerAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderManagerAPI.Data;
 using OrderManagerAPI.Models;
 
 namespace OrderManagerAPI.Repositories
@@ -14,6 +15,18 @@ namespace OrderManagerAPI.Repositories
             context.OrderDetails.AddRange(orderDetails);
             await context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<ICollection<OrderDetailsDtoGetById>> GetByOrderId(int id)
+        {
+            return await context.OrderDetails
+                .Where(od => od.OrderId == id)
+                .Select(od => new OrderDetailsDtoGetById
+                {
+                    Id = od.Id,
+                    ProductId = od.ProductId,
+                    Quantity = od.Quantity,
+                }).ToListAsync();
         }
     }
 }
