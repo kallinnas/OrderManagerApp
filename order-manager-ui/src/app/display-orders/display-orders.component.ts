@@ -27,7 +27,7 @@ export class DisplayOrdersComponent implements OnInit, AfterViewInit {
   filteredOrders$!: Observable<any[]>;
 
   dataSource = new MatTableDataSource<any>([]);
-  displayedColumns = ['id', 'employeeName', 'customerName', 'shipperName', 'orderDate', 'orderTotalPrice', 'remove',];
+  displayedColumns = ['id', 'employeeName', 'customerName', 'shipperName', 'orderDate', 'orderTotalPrice', 'remove'];
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
