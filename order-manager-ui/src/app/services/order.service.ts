@@ -8,7 +8,7 @@ export class OrderService {
 
   private baseUrl: string = environment.baseURL + `/Orders`;
 
-  http = inject(HttpClient);
+  private http = inject(HttpClient);
 
   $orders = this.http.get<OrderDtoGetAll[]>(this.baseUrl);
 
